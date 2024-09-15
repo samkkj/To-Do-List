@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        .box {
+            background-color: aliceblue;
+            margin: 100px auto 0;
+            justify-content: center;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+
+        .box h1 {
+            font-size: 35px;
+            font-weight: 600;
+            color: #001e4d;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #333;
+            width: 30%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            width: 360px;
+
+        }
+
+        #inputField {
+            width: 300px;
+            height: 26px;
+            text-align: center;
+            /*border: 1px solid black;*/
+            outline: none;
+            border-radius: 30px;
+            background-color: #001e4d;
+            font-size: 15px;
+            color: aliceblue;
+            vertical-align: middle;
+        }
+
+        .text {
+
+            display: flex;
+        }
+
+        #addToDo {
+            height: 30px;
+            width: 100px;
+            border: none;
+            background-color: #001e4d;
+            font-size: 15px;
+            color: white;
+            text-align: center;
+            border-radius: 30px;
+            margin-left: 10px;
+        }
+
+        .to-dos {
+            margin-top: 25px;
+            color: #000000;
+            font-weight: 500;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <link rel="shortcut icon" href="todoicon.png" type="image/png">
+</head>
+
+<body>
+    <div class="box">
+        <h1>To Do List</h1>
+        <div class="container">
+            <div class="text">
+                <input id="inputField" type="text"><button id="addToDo">Add Task</button>
+            </div>
+        </div>
+        <div class="to-dos" id="toDoContainer">
+        </div>
+    </div>
+    </div>
+    <script>
+        let addToDoButton = document.getElementById('addToDo');
+        let toDoContainer = document.getElementById('toDoContainer');
+        let inputField = document.getElementById('inputField');
+        addToDoButton.addEventListener('click', function () {
+            var paragraph = document.createElement('p');
+            paragraph.classList.add('paragraph-styling');
+            //Below line is for taking input value from the input field (using .value)
+            paragraph.innerText = inputField.value;
+            //Below line is for append text to the list area
+            toDoContainer.appendChild(paragraph);
+            //Below line is for remove text from the input area
+            inputField.value = "";
+            //Below line is for line-through on added text
+            paragraph.addEventListener('click', function () {
+                paragraph.style.textDecoration = "line-through";
+            })
+            //Below line is for remove added text
+            paragraph.addEventListener('dblclick', function () {
+                toDoContainer.removeChild(paragraph);
+            })
+        })
+    </script>
+</body>
+
+</html>
